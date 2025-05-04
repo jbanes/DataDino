@@ -23,6 +23,7 @@
         <datatype name="VARBINARY" resizable="true"></datatype>
         <datatype name="VARCHAR" resizable="true"></datatype>
         <autonumber sql="IDENTITY"></autonumber>
+        <property key="convirgance-driver" value="HSQLDB" />
     </profile>
     <profile name="HSQLDB Client/Server">
         <driver prefix="jdbc:hsqldb:hsql" name="org.hsqldb.jdbcDriver" url="//$[HOST:localhost]:$[PORT:9001]" archive="drivers/hsqldb.jar"></driver>
@@ -46,8 +47,9 @@
         <datatype name="VARBINARY" resizable="true"></datatype>
         <datatype name="VARCHAR" resizable="true"></datatype>
         <autonumber sql="IDENTITY"></autonumber>
+        <property key="convirgance-driver" value="HSQLDB" />
     </profile>
-    <profile name="Oracle Thin">
+    <profile name="Oracle Thin (SID)">
         <driver prefix="jdbc:oracle:thin" name="oracle.jdbc.driver.OracleDriver" url="@$[HOST:localhost]:$[PORT:1521]:$[DATABASE]" archive="drivers/oracle.jar" updated="5/21/2002"></driver>
         <datatype name="ARRAY" resizable="false"></datatype>
         <datatype name="BLOB" resizable="false"></datatype>
@@ -70,6 +72,32 @@
         <datatype name="TIMESTAMP" resizable="false"></datatype>
         <property key="get-view-sql" value="select text from ALL_VIEWS where OWNER = '$schema' and VIEW_NAME = '$table'"/>
         <property key="get-synonym-sql" value="select 'CREATE SYNONYM &quot;' || OWNER || '&quot;.&quot;' || SYNONYM_NAME || '&quot; FOR &quot;' || TABLE_OWNER || '&quot;.&quot;' || TABLE_NAME || '&quot;' as text from ALL_SYNONYMS where OWNER='$schema' and SYNONYM_NAME='$table'"/>
+        <property key="convirgance-driver" value="Oracle Thin Driver" />
+    </profile>
+    <profile name="Oracle Thin (Service)">
+        <driver prefix="jdbc:oracle:thin" name="oracle.jdbc.driver.OracleDriver" url="@$[HOST:localhost]:$[PORT:1521]/$[DATABASE]" archive="drivers/oracle.jar" updated="5/21/2002"></driver>
+        <datatype name="ARRAY" resizable="false"></datatype>
+        <datatype name="BLOB" resizable="false"></datatype>
+        <datatype name="CHAR" resizable="true"></datatype>
+        <datatype name="CLOB" resizable="false"></datatype>
+        <datatype name="DATE" resizable="false"></datatype>
+        <datatype name="FLOAT" resizable="false"></datatype>
+        <datatype name="LONG" resizable="false"></datatype>
+        <datatype name="LONG RAW" resizable="false"></datatype>
+        <datatype name="NUMBER" resizable="true"></datatype>
+        <datatype name="RAW" resizable="false"></datatype>
+        <datatype name="REAL" resizable="false"></datatype>
+        <datatype name="REF" resizable="false"></datatype>
+        <datatype name="STRUCT" resizable="false"></datatype>
+        <datatype name="VARCHAR2" resizable="true" alternate="VARCHAR"></datatype>
+        <datatype name="INT" resizable="false"></datatype>
+        <datatype name="INTEGER" resizable="false"></datatype>
+        <datatype name="VARCHAR" resizable="true"></datatype>
+        <datatype name="TIME" resizable="false"></datatype>
+        <datatype name="TIMESTAMP" resizable="false"></datatype>
+        <property key="get-view-sql" value="select text from ALL_VIEWS where OWNER = '$schema' and VIEW_NAME = '$table'"/>
+        <property key="get-synonym-sql" value="select 'CREATE SYNONYM &quot;' || OWNER || '&quot;.&quot;' || SYNONYM_NAME || '&quot; FOR &quot;' || TABLE_OWNER || '&quot;.&quot;' || TABLE_NAME || '&quot;' as text from ALL_SYNONYMS where OWNER='$schema' and SYNONYM_NAME='$table'"/>
+        <property key="convirgance-driver" value="Oracle Thin Driver" />
     </profile>
     <profile name="PostgreSQL">
         <driver prefix="jdbc:postgresql" name="org.postgresql.Driver" url="//$[HOST:localhost]:$[PORT:5432]/$[DATABASE]" archive="drivers/postgresql.jar" updated="9/10/2002"></driver>
@@ -120,6 +148,7 @@
         <datatype name="TIME" resizable="false"></datatype>
         <datatype name="TIMESTAMP" resizable="false"></datatype>
         <autonumber sql="AUTO_INCREMENT"></autonumber>
+        <property key="convirgance-driver" value="MariaDB/MySQL" />
     </profile>
     <profile name="IBM DB2 Network">
         <driver prefix="jdbc:db2" name="COM.ibm.db2.jdbc.net.DB2Driver" url="//$[HOST:localhost]:$[PORT:6789]/$[DATABASE]" archive="drivers/db2java.zip"></driver>
@@ -142,6 +171,7 @@
         <autonumber sql="GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1, NO CACHE)"></autonumber>
         <property key="get-view-sql" value="select text from &quot;SYSCAT&quot;.&quot;VIEWS&quot; where viewschema = '$schema' and viewname = '$table'"/>
         <property key="source-clob" value="true"/>
+        <property key="convirgance-driver" value="DB2" />
     </profile>
     <profile name="SQL Server">
         <driver prefix="jdbc:jtds:sqlserver" name="net.sourceforge.jtds.jdbc.Driver" url="//$[HOST:localhost]:$[PORT:1433]/$[DATABASE]" archive="drivers/jtds.jar"></driver>
