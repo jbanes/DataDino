@@ -1,6 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<profiles><profile name="HSQLDB Local"><driver prefix="jdbc:hsqldb" name="org.hsqldb.jdbcDriver" url="$[DATABASE]" archive="drivers/hsqldb.jar"></driver><datatype name="BIGINT" resizable="false"></datatype><datatype name="BINARY" resizable="false"></datatype><datatype name="BIT" resizable="false"></datatype><datatype name="CHAR" resizable="true"></datatype><datatype name="DATE" resizable="false"></datatype><datatype name="DECIMAL" resizable="true"></datatype><datatype name="DOUBLE" resizable="false"></datatype><datatype name="FLOAT" resizable="false"></datatype><datatype name="INTEGER" resizable="false"></datatype><datatype name="LONGVARBINARY" resizable="true"></datatype><datatype name="LONGVARCHAR" resizable="true"></datatype><datatype name="NUMERIC" resizable="true"></datatype><datatype name="REAL" resizable="false"></datatype><datatype name="SMALLINT" resizable="false"></datatype><datatype name="TIME" resizable="false"></datatype><datatype name="TIMESTAMP" resizable="false"></datatype><datatype name="VARBINARY" resizable="true"></datatype><datatype name="VARCHAR" resizable="true"></datatype><autonumber sql="IDENTITY"></autonumber></profile><profile name="HSQLDB Client/Server"><driver prefix="jdbc:hsqldb:hsql" name="org.hsqldb.jdbcDriver" url="//$[HOST:localhost]:$[PORT:9001]" archive="drivers/hsqldb.jar"></driver><datatype name="BIGINT" resizable="false"></datatype><datatype name="BINARY" resizable="false"></datatype><datatype name="BIT" resizable="false"></datatype><datatype name="CHAR" resizable="true"></datatype><datatype name="DATE" resizable="false"></datatype><datatype name="DECIMAL" resizable="true"></datatype><datatype name="DOUBLE" resizable="false"></datatype><datatype name="FLOAT" resizable="false"></datatype><datatype name="INTEGER" resizable="false"></datatype><datatype name="LONGVARBINARY" resizable="true"></datatype><datatype name="LONGVARCHAR" resizable="true"></datatype><datatype name="NUMERIC" resizable="true"></datatype><datatype name="REAL" resizable="false"></datatype><datatype name="SMALLINT" resizable="false"></datatype><datatype name="TIME" resizable="false"></datatype><datatype name="TIMESTAMP" resizable="false"></datatype><datatype name="VARBINARY" resizable="true"></datatype><datatype name="VARCHAR" resizable="true"></datatype><autonumber sql="IDENTITY"></autonumber></profile><profile name="Oracle Thin"><driver prefix="jdbc:oracle:thin" name="oracle.jdbc.driver.OracleDriver" url="@$[HOST:localhost]:$[PORT:1521]:$[DATABASE]" archive="drivers/oracle.jar" updated="5/21/2002"></driver><datatype name="ARRAY" resizable="false"></datatype><datatype name="BLOB" resizable="false"></datatype><datatype name="CHAR" resizable="true"></datatype><datatype name="CLOB" resizable="false"></datatype><datatype name="DATE" resizable="false"></datatype><datatype name="FLOAT" resizable="false"></datatype><datatype name="LONG" resizable="false"></datatype><datatype name="LONG RAW" resizable="false"></datatype><datatype name="NUMBER" resizable="true"></datatype><datatype name="RAW" resizable="false"></datatype><datatype name="REAL" resizable="false"></datatype><datatype name="REF" resizable="false"></datatype><datatype name="STRUCT" resizable="false"></datatype><datatype name="VARCHAR2" resizable="true" alternate="VARCHAR"></datatype><datatype name="INTEGER" resizable="false"></datatype><datatype name="VARCHAR" resizable="true"></datatype><datatype name="TIME" resizable="false"></datatype><datatype name="TIMESTAMP" resizable="false"></datatype><property key="get-view-sql" value="select text from ALL_VIEWS where OWNER = '$schema' and VIEW_NAME = '$table'"/><property key="get-synonym-sql" value="select 'CREATE SYNONYM &quot;' || OWNER || '&quot;.&quot;' || SYNONYM_NAME || '&quot; FOR &quot;' || TABLE_OWNER || '&quot;.&quot;' || TABLE_NAME || '&quot;' as text from ALL_SYNONYMS where OWNER='$schema' and SYNONYM_NAME='$table'"/></profile><profile name="PostgreSQL"><driver prefix="jdbc:postgresql" name="org.postgresql.Driver" url="//$[HOST:localhost]:$[PORT:5432]/$[DATABASE]" archive="drivers/postgresql.jar" updated="9/10/2002"></driver><datatype name="BOOL" resizable="false" alternate="BIT"></datatype><datatype name="INT8" resizable="false" alternate="BIGINT"></datatype><datatype name="CHAR" resizable="true"></datatype><datatype name="NUMERIC" resizable="true"></datatype><datatype name="INT4" resizable="false" alternate="INTEGER"></datatype><datatype name="INT2" resizable="false" alternate="SMALLINT"></datatype><datatype name="FLOAT4" resizable="false" alternate="REAL"></datatype><datatype name="MONEY" resizable="false"></datatype><datatype name="FLOAT8" resizable="false" alternate="DOUBLE PRECISION"></datatype><datatype name="VARCHAR" resizable="true"></datatype><datatype name="TEXT" resizable="false"></datatype><datatype name="DATE" resizable="false"></datatype><datatype name="TIME" resizable="false"></datatype><datatype name="TIMESTAMP" resizable="false"></datatype><datatype name="VARBIT" resizable="true"></datatype><datatype name="INTEGER" resizable="false"></datatype><datatype name="BPCHAR" resizable="false"></datatype>
-        <autonumber datatype="SERIAL"></autonumber><property key="get-view-sql" value="select pg_get_viewdef((select oid from pg_class where relname = '$table'))"/><property key="get-index-sql" value="select pg_get_indexdef((select oid from pg_class where relname = '$index'))"/>
-    </profile><profile name="MySQL"><driver prefix="jdbc:mysql" name="org.gjt.mm.mysql.Driver" url="//$[HOST:localhost]:$[PORT:3306]/$[DATABASE]" archive="drivers/mysql.jar" updated="8/7/2002"></driver><datatype name="BIT" resizable="false"></datatype><datatype name="BOOL" resizable="false"></datatype><datatype name="TINYINT" resizable="true"></datatype><datatype name="BIGINT" resizable="true"></datatype><datatype name="LONG VARBINARY" resizable="false"></datatype><datatype name="LONGBLOB" resizable="false"></datatype><datatype name="BLOB" resizable="false"></datatype><datatype name="LONG VARCHAR" resizable="true"></datatype><datatype name="TEXT" resizable="true"></datatype><datatype name="CHAR" resizable="true"></datatype><datatype name="NUMERIC" resizable="true"></datatype><datatype name="DECIMAL" resizable="true"></datatype><datatype name="INTEGER" resizable="true"></datatype><datatype name="INT" resizable="true" alternate="INTEGER"></datatype><datatype name="SMALLINT" resizable="true"></datatype><datatype name="DOUBLE" resizable="true"></datatype><datatype name="FLOAT" resizable="true"></datatype><datatype name="REAL" resizable="true"></datatype><datatype name="VARCHAR" resizable="true"></datatype><datatype name="DATE" resizable="false"></datatype><datatype name="TIME" resizable="false"></datatype><datatype name="TIMESTAMP" resizable="false"></datatype><autonumber sql="AUTO_INCREMENT"></autonumber></profile><profile name="IBM DB2 Network"><driver prefix="jdbc:db2" name="COM.ibm.db2.jdbc.net.DB2Driver" url="//$[HOST:localhost]:$[PORT:6789]/$[DATABASE]" archive="drivers/db2java.zip"></driver><datatype name="BLOB" resizable="true"></datatype><datatype name="CLOB" resizable="true"></datatype><datatype name="LONG VARCHAR" resizable="false"></datatype><datatype name="CHARACTER" resizable="true"></datatype><datatype name="NUMERIC" resizable="true"></datatype><datatype name="DECIMAL" resizable="true"></datatype><datatype name="INTEGER" resizable="false"></datatype><datatype name="SMALLINT" resizable="false"></datatype><datatype name="FLOAT" resizable="false"></datatype><datatype name="REAL" resizable="false"></datatype><datatype name="DATE" resizable="false"></datatype><datatype name="TIME" resizable="false"></datatype><datatype name="TIMESTAMP" resizable="false"></datatype><datatype name="VARCHAR" resizable="true"></datatype><datatype name="BIGINT" resizable="false"></datatype><autonumber sql="GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1, NO CACHE)"></autonumber><property key="get-view-sql" value="select text from &quot;SYSCAT&quot;.&quot;VIEWS&quot; where viewschema = '$schema' and viewname = '$table'"/><property key="source-clob" value="true"/></profile><profile name="SQL Server"><driver prefix="jdbc:jtds:sqlserver" name="net.sourceforge.jtds.jdbc.Driver" url="//$[HOST:localhost]:$[PORT:1433]/$[DATABASE];TDS=7.0" archive="drivers/jtds.jar"></driver><datatype name="ARRAY" resizable="false"></datatype><datatype name="BLOB" resizable="false"></datatype><datatype name="CHAR" resizable="true"></datatype><datatype name="CLOB" resizable="false"></datatype><datatype name="DATE" resizable="false"></datatype><datatype name="FLOAT" resizable="false"></datatype><datatype name="LONG" resizable="false"></datatype><datatype name="LONG RAW" resizable="false"></datatype><datatype name="NUMBER" resizable="true"></datatype><datatype name="RAW" resizable="false"></datatype><datatype name="REAL" resizable="false"></datatype><datatype name="REF" resizable="false"></datatype><datatype name="STRUCT" resizable="false"></datatype><datatype name="VARCHAR2" resizable="true" alternate="VARCHAR"></datatype><datatype name="INTEGER" resizable="false"></datatype><datatype name="VARCHAR" resizable="true"></datatype><datatype name="TIME" resizable="false"></datatype><datatype name="TIMESTAMP" resizable="false"></datatype><property key="left-token-delim" value="["></property><property key="right-token-delim" value="]"></property><property key="get-view-sql" value="exec sp_helptext '$dbo'"/><autonumber sql="IDENTITY"></autonumber></profile></profiles>
+<profiles>
+    <profile name="HSQLDB Local">
+        <driver prefix="jdbc:hsqldb" name="org.hsqldb.jdbcDriver" url="$[DATABASE]" archive="drivers/hsqldb.jar"></driver>
+        <datatype name="BIGINT" resizable="false"></datatype>
+        <datatype name="BINARY" resizable="false"></datatype>
+        <datatype name="BIT" resizable="false"></datatype>
+        <datatype name="CHAR" resizable="true"></datatype>
+        <datatype name="DATE" resizable="false"></datatype>
+        <datatype name="DECIMAL" resizable="true"></datatype>
+        <datatype name="DOUBLE" resizable="false"></datatype>
+        <datatype name="FLOAT" resizable="false"></datatype>
+        <datatype name="INTEGER" resizable="false"></datatype>
+        <datatype name="LONGVARBINARY" resizable="true"></datatype>
+        <datatype name="LONGVARCHAR" resizable="true"></datatype>
+        <datatype name="NUMERIC" resizable="true"></datatype>
+        <datatype name="REAL" resizable="false"></datatype>
+        <datatype name="SMALLINT" resizable="false"></datatype>
+        <datatype name="TIME" resizable="false"></datatype>
+        <datatype name="TIMESTAMP" resizable="false"></datatype>
+        <datatype name="VARBINARY" resizable="true"></datatype>
+        <datatype name="VARCHAR" resizable="true"></datatype>
+        <autonumber sql="IDENTITY"></autonumber>
+    </profile>
+    <profile name="HSQLDB Client/Server">
+        <driver prefix="jdbc:hsqldb:hsql" name="org.hsqldb.jdbcDriver" url="//$[HOST:localhost]:$[PORT:9001]" archive="drivers/hsqldb.jar"></driver>
+        <datatype name="BIGINT" resizable="false"></datatype>
+        <datatype name="BINARY" resizable="false"></datatype>
+        <datatype name="BIT" resizable="false"></datatype>
+        <datatype name="CHAR" resizable="true"></datatype>
+        <datatype name="DATE" resizable="false"></datatype>
+        <datatype name="DECIMAL" resizable="true"></datatype>
+        <datatype name="DOUBLE" resizable="false"></datatype>
+        <datatype name="FLOAT" resizable="false"></datatype>
+        <datatype name="INTEGER" resizable="false"></datatype>
+        <datatype name="LONGVARBINARY" resizable="true"></datatype>
+        <datatype name="LONGVARCHAR" resizable="true"></datatype>
+        <datatype name="NUMERIC" resizable="true"></datatype>
+        <datatype name="REAL" resizable="false"></datatype>
+        <datatype name="SMALLINT" resizable="false"></datatype>
+        <datatype name="TIME" resizable="false"></datatype>
+        <datatype name="TIMESTAMP" resizable="false"></datatype>
+        <datatype name="VARBINARY" resizable="true"></datatype>
+        <datatype name="VARCHAR" resizable="true"></datatype>
+        <autonumber sql="IDENTITY"></autonumber>
+    </profile>
+    <profile name="Oracle Thin">
+        <driver prefix="jdbc:oracle:thin" name="oracle.jdbc.driver.OracleDriver" url="@$[HOST:localhost]:$[PORT:1521]:$[DATABASE]" archive="drivers/oracle.jar" updated="5/21/2002"></driver>
+        <datatype name="ARRAY" resizable="false"></datatype>
+        <datatype name="BLOB" resizable="false"></datatype>
+        <datatype name="CHAR" resizable="true"></datatype>
+        <datatype name="CLOB" resizable="false"></datatype>
+        <datatype name="DATE" resizable="false"></datatype>
+        <datatype name="FLOAT" resizable="false"></datatype>
+        <datatype name="LONG" resizable="false"></datatype>
+        <datatype name="LONG RAW" resizable="false"></datatype>
+        <datatype name="NUMBER" resizable="true"></datatype>
+        <datatype name="RAW" resizable="false"></datatype>
+        <datatype name="REAL" resizable="false"></datatype>
+        <datatype name="REF" resizable="false"></datatype>
+        <datatype name="STRUCT" resizable="false"></datatype>
+        <datatype name="VARCHAR2" resizable="true" alternate="VARCHAR"></datatype>
+        <datatype name="INTEGER" resizable="false"></datatype>
+        <datatype name="VARCHAR" resizable="true"></datatype>
+        <datatype name="TIME" resizable="false"></datatype>
+        <datatype name="TIMESTAMP" resizable="false"></datatype>
+        <property key="get-view-sql" value="select text from ALL_VIEWS where OWNER = '$schema' and VIEW_NAME = '$table'"/>
+        <property key="get-synonym-sql" value="select 'CREATE SYNONYM &quot;' || OWNER || '&quot;.&quot;' || SYNONYM_NAME || '&quot; FOR &quot;' || TABLE_OWNER || '&quot;.&quot;' || TABLE_NAME || '&quot;' as text from ALL_SYNONYMS where OWNER='$schema' and SYNONYM_NAME='$table'"/>
+    </profile>
+    <profile name="PostgreSQL">
+        <driver prefix="jdbc:postgresql" name="org.postgresql.Driver" url="//$[HOST:localhost]:$[PORT:5432]/$[DATABASE]" archive="drivers/postgresql.jar" updated="9/10/2002"></driver>
+        <datatype name="BOOL" resizable="false" alternate="BIT"></datatype>
+        <datatype name="INT8" resizable="false" alternate="BIGINT"></datatype>
+        <datatype name="CHAR" resizable="true"></datatype>
+        <datatype name="NUMERIC" resizable="true"></datatype>
+        <datatype name="INT4" resizable="false" alternate="INTEGER"></datatype>
+        <datatype name="INT2" resizable="false" alternate="SMALLINT"></datatype>
+        <datatype name="FLOAT4" resizable="false" alternate="REAL"></datatype>
+        <datatype name="MONEY" resizable="false"></datatype>
+        <datatype name="FLOAT8" resizable="false" alternate="DOUBLE PRECISION"></datatype>
+        <datatype name="VARCHAR" resizable="true"></datatype>
+        <datatype name="TEXT" resizable="false"></datatype>
+        <datatype name="DATE" resizable="false"></datatype>
+        <datatype name="TIME" resizable="false"></datatype>
+        <datatype name="TIMESTAMP" resizable="false"></datatype>
+        <datatype name="VARBIT" resizable="true"></datatype>
+        <datatype name="INTEGER" resizable="false"></datatype>
+        <datatype name="BPCHAR" resizable="false"></datatype>
+        <autonumber datatype="SERIAL"></autonumber>
+        <property key="get-view-sql" value="select pg_get_viewdef((select oid from pg_class where relname = '$table'))"/>
+        <property key="get-index-sql" value="select pg_get_indexdef((select oid from pg_class where relname = '$index'))"/>
+    </profile>
+    <profile name="MySQL">
+        <driver prefix="jdbc:mysql" name="org.gjt.mm.mysql.Driver" url="//$[HOST:localhost]:$[PORT:3306]/$[DATABASE]" archive="drivers/mysql.jar" updated="8/7/2002"></driver>
+        <datatype name="BIT" resizable="false"></datatype>
+        <datatype name="BOOL" resizable="false"></datatype>
+        <datatype name="TINYINT" resizable="true"></datatype>
+        <datatype name="BIGINT" resizable="true"></datatype>
+        <datatype name="LONG VARBINARY" resizable="false"></datatype>
+        <datatype name="LONGBLOB" resizable="false"></datatype>
+        <datatype name="BLOB" resizable="false"></datatype>
+        <datatype name="LONG VARCHAR" resizable="true"></datatype>
+        <datatype name="TEXT" resizable="true"></datatype>
+        <datatype name="CHAR" resizable="true"></datatype>
+        <datatype name="NUMERIC" resizable="true"></datatype>
+        <datatype name="DECIMAL" resizable="true"></datatype>
+        <datatype name="INTEGER" resizable="true"></datatype>
+        <datatype name="INT" resizable="true" alternate="INTEGER"></datatype>
+        <datatype name="SMALLINT" resizable="true"></datatype>
+        <datatype name="DOUBLE" resizable="true"></datatype>
+        <datatype name="FLOAT" resizable="true"></datatype>
+        <datatype name="REAL" resizable="true"></datatype>
+        <datatype name="VARCHAR" resizable="true"></datatype>
+        <datatype name="DATE" resizable="false"></datatype>
+        <datatype name="TIME" resizable="false"></datatype>
+        <datatype name="TIMESTAMP" resizable="false"></datatype>
+        <autonumber sql="AUTO_INCREMENT"></autonumber>
+    </profile>
+    <profile name="IBM DB2 Network">
+        <driver prefix="jdbc:db2" name="COM.ibm.db2.jdbc.net.DB2Driver" url="//$[HOST:localhost]:$[PORT:6789]/$[DATABASE]" archive="drivers/db2java.zip"></driver>
+        <datatype name="BLOB" resizable="true"></datatype>
+        <datatype name="CLOB" resizable="true"></datatype>
+        <datatype name="LONG VARCHAR" resizable="false"></datatype>
+        <datatype name="CHARACTER" resizable="true"></datatype>
+        <datatype name="NUMERIC" resizable="true"></datatype>
+        <datatype name="DECIMAL" resizable="true"></datatype>
+        <datatype name="INTEGER" resizable="false"></datatype>
+        <datatype name="SMALLINT" resizable="false"></datatype>
+        <datatype name="FLOAT" resizable="false"></datatype>
+        <datatype name="REAL" resizable="false"></datatype>
+        <datatype name="DATE" resizable="false"></datatype>
+        <datatype name="TIME" resizable="false"></datatype>
+        <datatype name="TIMESTAMP" resizable="false"></datatype>
+        <datatype name="VARCHAR" resizable="true"></datatype>
+        <datatype name="BIGINT" resizable="false"></datatype>
+        <autonumber sql="GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1, NO CACHE)"></autonumber>
+        <property key="get-view-sql" value="select text from &quot;SYSCAT&quot;.&quot;VIEWS&quot; where viewschema = '$schema' and viewname = '$table'"/>
+        <property key="source-clob" value="true"/>
+    </profile>
+    <profile name="SQL Server">
+        <driver prefix="jdbc:jtds:sqlserver" name="net.sourceforge.jtds.jdbc.Driver" url="//$[HOST:localhost]:$[PORT:1433]/$[DATABASE];TDS=7.0" archive="drivers/jtds.jar"></driver>
+        <datatype name="ARRAY" resizable="false"></datatype>
+        <datatype name="BLOB" resizable="false"></datatype>
+        <datatype name="CHAR" resizable="true"></datatype>
+        <datatype name="CLOB" resizable="false"></datatype>
+        <datatype name="DATE" resizable="false"></datatype>
+        <datatype name="FLOAT" resizable="false"></datatype>
+        <datatype name="LONG" resizable="false"></datatype>
+        <datatype name="LONG RAW" resizable="false"></datatype>
+        <datatype name="NUMBER" resizable="true"></datatype>
+        <datatype name="RAW" resizable="false"></datatype>
+        <datatype name="REAL" resizable="false"></datatype>
+        <datatype name="REF" resizable="false"></datatype>
+        <datatype name="STRUCT" resizable="false"></datatype>
+        <datatype name="VARCHAR2" resizable="true" alternate="VARCHAR"></datatype>
+        <datatype name="INTEGER" resizable="false"></datatype>
+        <datatype name="VARCHAR" resizable="true"></datatype>
+        <datatype name="TIME" resizable="false"></datatype>
+        <datatype name="TIMESTAMP" resizable="false"></datatype>
+        <property key="left-token-delim" value="["></property>
+        <property key="right-token-delim" value="]"></property>
+        <property key="get-view-sql" value="exec sp_helptext '$dbo'"/>
+        <autonumber sql="IDENTITY"></autonumber>
+    </profile>
+</profiles>
 
