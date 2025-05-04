@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    Typical usage:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE profiles SYSTEM "profiles.dtd">
+
+    <profiles>
+    ...
+    </profiles>
+-->
+
+  <!ELEMENT profiles (profile)*>
+
+  <!ELEMENT datatype EMPTY>
+  <!ATTLIST datatype
+    name CDATA #IMPLIED
+    resizable CDATA #IMPLIED
+  >
+
+  <!ELEMENT profile (datatype|driver)*>
+  <!ATTLIST profile
+    name CDATA #IMPLIED
+  >
+
+  <!ELEMENT driver EMPTY>
+  <!ATTLIST driver
+    url CDATA #IMPLIED
+    name CDATA #IMPLIED
+    prefix CDATA #IMPLIED
+  >
