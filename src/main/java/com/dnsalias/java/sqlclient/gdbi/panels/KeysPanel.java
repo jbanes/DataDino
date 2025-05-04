@@ -126,6 +126,7 @@ public class KeysPanel extends JPanel implements DatabaseInterfacePanel, ListSel
     
     private void loadPrimaryKeys(DefaultListModel model) throws SQLException
     {
+        SQLClientHandler handler = this.handler.getConnection();
         DatabaseMetaData meta = handler.getMetaData();
         ResultSet set;
         Hashtable table = new Hashtable();
@@ -162,10 +163,12 @@ public class KeysPanel extends JPanel implements DatabaseInterfacePanel, ListSel
         while(keys.hasMoreElements()) model.addElement(table.get(keys.nextElement()));
         
         set.close();
+        handler.completeOperation();
     }
     
     private void loadImportedKeys(DefaultListModel model) throws SQLException
     {
+        SQLClientHandler handler = this.handler.getConnection();
         DatabaseMetaData meta = handler.getMetaData();
         ResultSet set;
         Hashtable table = new Hashtable();
@@ -216,10 +219,12 @@ public class KeysPanel extends JPanel implements DatabaseInterfacePanel, ListSel
         while(keys.hasMoreElements()) model.addElement(table.get(keys.nextElement()));
 
         set.close();
+        handler.completeOperation();
     }
     
     private void loadExportedKeys(DefaultListModel model) throws SQLException
     {
+        SQLClientHandler handler = this.handler.getConnection();
         DatabaseMetaData meta = handler.getMetaData();
         ResultSet set;
         Hashtable table = new Hashtable();
@@ -270,6 +275,7 @@ public class KeysPanel extends JPanel implements DatabaseInterfacePanel, ListSel
         while(keys.hasMoreElements()) model.addElement(table.get(keys.nextElement()));
 
         set.close();
+        handler.completeOperation();
     }
     
     public void activate()

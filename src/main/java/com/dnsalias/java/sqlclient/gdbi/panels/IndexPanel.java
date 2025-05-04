@@ -122,6 +122,7 @@ public class IndexPanel extends JPanel implements DatabaseInterfacePanel, ListSe
     
     private void loadIndexes(DefaultListModel model) throws SQLException
     {
+        SQLClientHandler handler = this.handler.getConnection();
         DatabaseMetaData meta = handler.getMetaData();
         ResultSet set;
         Hashtable table = new Hashtable();
@@ -169,6 +170,7 @@ public class IndexPanel extends JPanel implements DatabaseInterfacePanel, ListSe
         while(indexes.hasMoreElements()) model.addElement(table.get(indexes.nextElement()));
         
         set.close();
+        handler.completeOperation();
     }
     
     public void activate()

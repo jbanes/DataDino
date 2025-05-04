@@ -57,11 +57,11 @@ public abstract class SQLClientHandler
     
     public abstract DatabaseMetaData getMetaData() throws SQLException;
     
+    public abstract Statement createStatement() throws SQLException;
+    
     public abstract int executeSQLChange(String query) throws SQLException;
     
     public abstract TableModel getTableColumnInfo(DBObject dbo) throws SQLException;
-    
-    public abstract TableModel getTableIndexInfo(String table) throws SQLException;
     
     public abstract TableModel getTablePrimaryKeyInfo(String table) throws SQLException;
     
@@ -80,4 +80,14 @@ public abstract class SQLClientHandler
     public abstract Profile getCurrentProfile();
     
     public abstract PreparedStatement createPreparedStatement(String statement) throws SQLException;
+    
+    public SQLClientHandler getConnection()
+    {
+        return this;
+    }
+    
+    public void completeOperation() throws SQLException
+    {
+        // No op for most connections
+    }
 }

@@ -397,10 +397,8 @@ public class StandardClient extends SQLClientHandler
     
     public TableModel getTableColumnInfo(DBObject dbo) throws SQLException
     {
-        Object[] columnNames =
-        {"Name", "Type", "Length", "Nullable?", "Default"};
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0)
-        {
+        Object[] columnNames = {"Name", "Type", "Length", "Nullable?", "Default"};
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
             Class[] types = new Class []
             {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class,
@@ -427,47 +425,6 @@ public class StandardClient extends SQLClientHandler
         while(result.next())
         {
             Object[] row = {result.getString("COLUMN_NAME"), result.getString("TYPE_NAME"), result.getInt("COLUMN_SIZE"), (result.getInt("NULLABLE") > 0), result.getString("COLUMN_DEF")};
-            
-            model.addRow(row);
-        }
-        
-        return model;
-    }
-    
-    public TableModel getTableIndexInfo(String table) throws SQLException
-    {
-        Object[] columnNames =
-        {"Name", "Column", "Unique Values?"};
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0)
-        {
-            Class[] types = new Class []
-            {
-                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
-            };
-            
-            public Class getColumnClass(int columnIndex)
-            {
-                return types [columnIndex];
-            }
-            
-            public boolean isCellEditable(int row, int col)
-            {
-                return false;
-            }
-        };
-        
-        DatabaseMetaData meta = this.connection.getMetaData();
-        ResultSet result;
-        
-        if(table.indexOf(".") > 0) result = meta.getIndexInfo(null, table.substring(0, table.indexOf(".")), table.substring(table.indexOf(".")+1), false, true);
-        else result = meta.getIndexInfo(null, null, table, false, true);
-        
-        while(result.next())
-        {
-            Object[] row =
-            {result.getString("INDEX_NAME"), result.getString("COLUMN_NAME"), new Boolean(!result.getBoolean("NON_UNIQUE"))};
-            
-            if(row[1] == null || row[1].toString().length() < 1) continue;
             
             model.addRow(row);
         }

@@ -518,6 +518,7 @@ public class DataMigrator extends JInternalFrame implements Runnable
             try
             {
                 boolean schema = includeSchema();
+                SQLClientHandler handler = this.handler.getConnection();
                 DatabaseMetaData meta = handler.getMetaData();
                 ResultSet result = meta.getTables(null, schemaName, "%", null);
                 AdvancedListModel model = new AdvancedListModel();
@@ -554,6 +555,7 @@ public class DataMigrator extends JInternalFrame implements Runnable
                 try{Thread.sleep(5000);} catch(Exception e) {}
                 
                 status.setText("");
+                handler.completeOperation();
             }
             catch(SQLException e)
             {

@@ -69,7 +69,7 @@ public class ObjectSource
     
     private String getText(String sql, boolean clob) throws SQLException
     {
-        Statement stmt = ((StandardClient)handler).createStatement();
+        Statement stmt = handler.createStatement();
         ResultSet result = stmt.executeQuery(sql);
         String text = "";
         

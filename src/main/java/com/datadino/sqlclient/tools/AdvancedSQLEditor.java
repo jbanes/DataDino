@@ -321,11 +321,14 @@ public class AdvancedSQLEditor extends DataDinoInternalFrame implements StatusBa
     
     private void initKeywords()
     {   
+        SQLClientHandler handler = this.handler.getConnection();
         String[] keywords = this.keywords;
         
         try
         {
             keywords = getKeywords(handler.getMetaData().getSQLKeywords());
+            
+            handler.completeOperation();
         }
         catch(SQLException e)
         {

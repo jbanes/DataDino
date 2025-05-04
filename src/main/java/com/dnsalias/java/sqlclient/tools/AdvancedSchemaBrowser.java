@@ -73,7 +73,7 @@ public class AdvancedSchemaBrowser extends JInternalFrame implements StatusBarOw
     public AdvancedSchemaBrowser()
     {
         this.handler = SQLClientHandler.getCurrentHandler();
-        this.schema = new SchemaInterface((StandardClient)handler);
+        this.schema = new SchemaInterface(handler);
         
         try
         {
@@ -229,6 +229,7 @@ public class AdvancedSchemaBrowser extends JInternalFrame implements StatusBarOw
     
     private void deleteActionPerformed(ActionEvent evt)
     {
+        SQLClientHandler handler = this.handler.getConnection();
         TabInfo tab = tabInfo[tableTabs.getSelectedIndex()];
         DBObject table = (DBObject)tab.list.getSelectedValue();
         
@@ -247,6 +248,8 @@ public class AdvancedSchemaBrowser extends JInternalFrame implements StatusBarOw
                 
                 revalidate();
             }
+            
+            handler.completeOperation();
         }
         catch(SQLException e)
         {
@@ -318,8 +321,9 @@ public class AdvancedSchemaBrowser extends JInternalFrame implements StatusBarOw
     
     private void initializeSchemaPanel() throws SQLException
     {
+        SQLClientHandler handler = this.handler.getConnection();
         String[] schemas = schema.getSchemas();
-        String username = ((StandardClient)handler).getCurrentProfile().username;
+        String username = handler.getCurrentProfile().username;
         
         selectedSchema.addItem("<all>");
         selectedSchema.setSelectedIndex(0);
@@ -374,6 +378,8 @@ public class AdvancedSchemaBrowser extends JInternalFrame implements StatusBarOw
                 selectedSchemaActionPerformed(evt);
             }
         });
+        
+        handler.completeOperation();
     }
     
     private synchronized void refreshSchemaActionPerformed(ActionEvent evt)

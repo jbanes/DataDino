@@ -414,7 +414,7 @@ public class AdvancedTableEditor extends JInternalFrame implements TableModelLis
     
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_okButtonActionPerformed
     {//GEN-HEADEREND:event_okButtonActionPerformed
-        
+        SQLClientHandler handler = this.handler.getConnection();
         String sql = "CREATE TABLE ";
         String tableName = this.tableName.getText();
         ColumnInfo info;
@@ -470,7 +470,7 @@ public class AdvancedTableEditor extends JInternalFrame implements TableModelLis
             }
 
             if(pk.getSelectedItem() != null && pk.getSelectedItem().toString().trim().length() > 0) 
-                sql += ","+newline+"    CONSTRAINT "+SQLNormalizer.tableName(this.tableName.getText()+"_PK", handler)+" PRIMARY KEY ("+normalizeKey(pk.getSelectedItem().toString())+")";
+                sql += ","+newline+"    CONSTRAINT "+SQLNormalizer.tableName(this.tableName.getText()+"_PK", handler)+" PRIMARY KEY ("+normalizeKey(handler, pk.getSelectedItem().toString())+")";
 
             for(int i=0; i<columns.getRowCount(); i++)
             {
@@ -547,7 +547,8 @@ public class AdvancedTableEditor extends JInternalFrame implements TableModelLis
                 ErrorReport.displayError("Could not save column comments. Your database <br>may not support this feature.",e, (Frame)parent);
             }
 
-            dispose(); 
+            dispose();
+            handler.completeOperation();
         }
         catch(SQLException e)
         {
@@ -555,7 +556,7 @@ public class AdvancedTableEditor extends JInternalFrame implements TableModelLis
         }
     }//GEN-LAST:event_okButtonActionPerformed
 
-    private String normalizeKey(String key) throws SQLException
+    private String normalizeKey(SQLClientHandler handler, String key) throws SQLException
     {
         String sql = "";
         StringTokenizer tokens = new StringTokenizer(key, ",");

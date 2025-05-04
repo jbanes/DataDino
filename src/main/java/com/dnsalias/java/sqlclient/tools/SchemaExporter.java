@@ -252,6 +252,7 @@ public class SchemaExporter extends JInternalFrame
             try
             {
                 boolean schema = includeSchema();
+                SQLClientHandler handler = SchemaExporter.this.handler.getConnection();
                 DatabaseMetaData meta = handler.getMetaData();
                 ResultSet result = meta.getTables(null, schemaName, "%", new String[]{type});
                 AdvancedListModel model = new AdvancedListModel();
@@ -285,6 +286,7 @@ public class SchemaExporter extends JInternalFrame
                 status.setText("Rendering table list...");
                 tablesList.setListData(temp);
                 status.setText("Ready");
+                handler.completeOperation();
             }
             catch(SQLException e)
             {

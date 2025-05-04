@@ -21,7 +21,7 @@ public class SQLNormalizer
     public static char getLeftDelimeter(SQLClientHandler handler) throws SQLException
     {
         char leftdelim = handler.getMetaData().getIdentifierQuoteString().charAt(0);
-        Profile profile = ((StandardClient)handler).getCurrentProfile();
+        Profile profile = handler.getCurrentProfile();
         
         if(profile.getProperty("left-token-delim") != null) leftdelim = profile.getProperty("left-token-delim").charAt(0);
         
@@ -31,7 +31,7 @@ public class SQLNormalizer
     public static char getRightDelimeter(SQLClientHandler handler) throws SQLException
     {
         char rightdelim = handler.getMetaData().getIdentifierQuoteString().charAt(0);
-        Profile profile = ((StandardClient)handler).getCurrentProfile();
+        Profile profile = handler.getCurrentProfile();
         
         if(profile.getProperty("right-token-delim") != null) rightdelim = profile.getProperty("right-token-delim").charAt(0);
         
@@ -44,7 +44,7 @@ public class SQLNormalizer
         String table = tableName;
         char leftdelim = handler.getMetaData().getIdentifierQuoteString().charAt(0);
         char rightdelim = leftdelim;
-        Profile profile = ((StandardClient)handler).getCurrentProfile();
+        Profile profile = handler.getCurrentProfile();
         
         String result;
         
@@ -69,7 +69,7 @@ public class SQLNormalizer
     {
         char leftdelim = handler.getMetaData().getIdentifierQuoteString().charAt(0);
         char rightdelim = leftdelim;
-        Profile profile = ((StandardClient)handler).getCurrentProfile();
+        Profile profile = handler.getCurrentProfile();
         
         String result;
         
@@ -122,7 +122,7 @@ public class SQLNormalizer
     {
         char leftdelim = handler.getMetaData().getIdentifierQuoteString().charAt(0);
         char rightdelim = leftdelim;
-        Profile profile = ((StandardClient)handler).getCurrentProfile();
+        Profile profile = handler.getCurrentProfile();
         
         if(profile.getProperty("left-token-delim") != null) leftdelim = profile.getProperty("left-token-delim").charAt(0);
         if(profile.getProperty("right-token-delim") != null) rightdelim = profile.getProperty("right-token-delim").charAt(0);

@@ -6,12 +6,12 @@
 
 package com.dnsalias.java.sqlclient.gdbi;
 
+import com.dnsalias.java.sqlclient.SQLClientHandler;
 import java.sql.*;
 import java.util.*;
 
 import javax.swing.*;
 
-import com.dnsalias.java.sqlclient.drivers.*;
 import com.dnsalias.java.sqlclient.gdbi.panels.*;
 import com.dnsalias.java.sqlclient.util.*;
 
@@ -22,9 +22,9 @@ import com.dnsalias.java.sqlclient.util.*;
  */
 public class SchemaInterface
 {
-    private StandardClient handler;
+    private SQLClientHandler handler;
     
-    public SchemaInterface(StandardClient handler)
+    public SchemaInterface(SQLClientHandler handler)
     {
         this.handler = handler;
     }
@@ -36,7 +36,7 @@ public class SchemaInterface
 
     public Iterator getDBObjects(String category, String schemaFilter) throws SQLException
     {
-        return new TableIterator(category, schemaFilter);
+        return new TableIterator(handler.getConnection(), category, schemaFilter);
     }
     
     public String[] getCategoryTabs(String category) throws SQLException
@@ -89,6 +89,7 @@ public class SchemaInterface
     
     private class TableIterator implements Iterator
     {
+        private SQLClientHandler handler;
         private ResultSet set;
         private boolean next;
         private String category;
@@ -99,11 +100,12 @@ public class SchemaInterface
         char leftdelim = '"';
         char rightdelim = '"';
         
-        public TableIterator(String category, String schemaFilter) throws SQLException
+        public TableIterator(SQLClientHandler handler, String category, String schemaFilter) throws SQLException
         {
             DatabaseMetaData meta = handler.getMetaData();
             
             category = category.trim();
+            this.handler = handler;
             this.category = category;
             this.schemaFilter = schemaFilter;
             this.leftdelim = SQLNormalizer.getLeftDelimeter(handler);
@@ -150,6 +152,7 @@ public class SchemaInterface
                     try
                     {
                         set.close();
+                        handler.completeOperation();
                     }
                     catch(SQLException e)
                     {

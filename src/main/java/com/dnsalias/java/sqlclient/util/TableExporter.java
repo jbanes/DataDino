@@ -30,7 +30,7 @@ public class TableExporter
     
     public TableExporter(SQLClientHandler handler, String table) throws SQLException
     {
-        this.handler = handler;
+        this.handler = handler.getConnection();
         this.table = table;
         
         if(table.indexOf('.') > 0)
@@ -39,18 +39,18 @@ public class TableExporter
             this.table = table.substring(table.indexOf('.')+1);
         }
         
-        meta = handler.getMetaData();
+        meta = this.handler.getMetaData();
         profile = handler.getCurrentProfile();
     }
     
     public TableExporter(SQLClientHandler handler, DBObject dbo) throws SQLException
     {
-        this.handler = handler;
+        this.handler = handler.getConnection();
         
         this.schema = dbo.getSchema();
         this.table = dbo.getName();
         
-        meta = handler.getMetaData();
+        meta = this.handler.getMetaData();
         profile = handler.getCurrentProfile();
     }
     

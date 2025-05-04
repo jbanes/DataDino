@@ -179,6 +179,8 @@ public class TableDataPanel extends JPanel implements DatabaseInterfacePanel, Ta
 
     private void deleteRecordActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_deleteRecordActionPerformed
     {//GEN-HEADEREND:event_deleteRecordActionPerformed
+        SQLClientHandler handler = this.handler.getConnection();
+        
         try
         {
             int[] rows = tableData.getSelectedRows();
@@ -229,6 +231,7 @@ public class TableDataPanel extends JPanel implements DatabaseInterfacePanel, Ta
                     }
                     
                     statement.executeUpdate();
+                    statement.close();
                 }
             }
             
@@ -244,10 +247,16 @@ public class TableDataPanel extends JPanel implements DatabaseInterfacePanel, Ta
             
             ErrorReport.displayError(e, (Frame)parent);
         }
+        finally
+        {
+            try { handler.completeOperation(); } catch(Exception e) { e.printStackTrace(); }
+        }
     }//GEN-LAST:event_deleteRecordActionPerformed
 
     private void refreshActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_refreshActionPerformed
     {//GEN-HEADEREND:event_refreshActionPerformed
+        SQLClientHandler handler = this.handler.getConnection();
+        
         DBTableModel model;
         PreparedStatement statement;
         ResultSet result;
@@ -334,9 +343,11 @@ public class TableDataPanel extends JPanel implements DatabaseInterfacePanel, Ta
 
     private void commitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_commitActionPerformed
     {//GEN-HEADEREND:event_commitActionPerformed
+        SQLClientHandler handler = this.handler.getConnection();
+        
         try
         {
-            try{handler.setAutoCommit(false);} catch(SQLException e) {e.printStackTrace();}
+            try { handler.setAutoCommit(false); } catch(SQLException e) { e.printStackTrace(); }
             
             ((DBTableModel)tableData.getModel()).commitChanges(handler, dbo);
             
@@ -370,6 +381,7 @@ public class TableDataPanel extends JPanel implements DatabaseInterfacePanel, Ta
             {
                 handler.rollback();
                 handler.setAutoCommit(true);
+                handler.completeOperation();
             }
             catch(SQLException sqle) {sqle.printStackTrace();}
         }

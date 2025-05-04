@@ -37,8 +37,8 @@ public class NewRecordHandler implements TableModelListener
     {
         this.row = row;
         this.table = table;
-        this.handler = handler;
-        this.profile = ((StandardClient)handler).getCurrentProfile();
+        this.handler = handler.getConnection();
+        this.profile = handler.getCurrentProfile();
     }
 
     public void add(TableModel model)
@@ -103,6 +103,8 @@ public class NewRecordHandler implements TableModelListener
         }
 
         statement.executeUpdate();
+        statement.close();
+        handler.completeOperation();
 
         remove();
     }

@@ -57,10 +57,13 @@ public class SourcePanel extends JPanel implements DatabaseInterfacePanel
     private void initKeywords()
     {   
         String[] keywords = AdvancedSQLEditor.keywords;
+        SQLClientHandler handler = this.handler.getConnection();
         
         try
         {
             keywords = AdvancedSQLEditor.getKeywords(handler.getMetaData().getSQLKeywords());
+            
+            handler.completeOperation();
         }
         catch(SQLException e)
         {
@@ -92,6 +95,7 @@ public class SourcePanel extends JPanel implements DatabaseInterfacePanel
     
     public void activate() 
     {
+        SQLClientHandler handler = this.handler.getConnection();
         ObjectSource source = new ObjectSource(handler);
         
         
@@ -101,6 +105,8 @@ public class SourcePanel extends JPanel implements DatabaseInterfacePanel
         try
         {
             sourcecode = source.getSource(dbo);
+            
+            handler.completeOperation();
         }
         catch(SQLException e)
         {

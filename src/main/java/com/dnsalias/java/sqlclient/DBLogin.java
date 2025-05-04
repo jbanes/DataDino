@@ -467,17 +467,30 @@ public class DBLogin extends JInternalFrame implements Runnable
             Profile profile = profileParser.getProfile(this.profile.getSelectedItem().toString());
             SQLClientHandler handler;
             
-            if(DownloadMonitor.download((Frame)parent, profile.loadDriver()))
+            // Update Profile with entered values
+            profile.host = hostname.getText();
+            profile.port = port.getText();
+            profile.username = username.getText();
+            profile.password = password.getText();
+            profile.database = database.getText();
+            
+            if(profile.getProperty("convirgance-driver") != null)
+            {
+                parent.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                
+                handler = new DataSourceClient(profile);
+
+                handler.openConnection();
+                handler.setCurrentHandler(handler);
+                
+                saveInfo();
+                MDIFrame.showSchemaBrowser();
+            }
+            else if(DownloadMonitor.download((Frame)parent, profile.loadDriver()))
             {
                 parent.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 
                 handler = new StandardClient(profile);
-
-                profile.host = hostname.getText();
-                profile.port = port.getText();
-                profile.username = username.getText();
-                profile.password = password.getText();
-                profile.database = database.getText();
 
                 handler.openConnection();
                 handler.setCurrentHandler(handler);
