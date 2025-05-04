@@ -279,6 +279,7 @@ public class ColumnsPanel extends JPanel implements DatabaseInterfacePanel, List
     
     private void deleteColumn()
     {
+        SQLClientHandler handler = this.handler.getConnection();
         int selected = columns.getSelectedRow();
         String column;
         String sql;
@@ -287,6 +288,9 @@ public class ColumnsPanel extends JPanel implements DatabaseInterfacePanel, List
         if(!ApplicationSettings.getInstance().isRegisteredVersion())
         {
             JOptionPane.showMessageDialog(this, "This is a feature of the Professional Edition.\nVisit www.datadino.com to upgrade today!", "", JOptionPane.INFORMATION_MESSAGE);
+            
+            try { handler.completeOperation(); } catch(Exception e) { e.printStackTrace(); }
+            
             return;
         }
         
@@ -300,6 +304,7 @@ public class ColumnsPanel extends JPanel implements DatabaseInterfacePanel, List
             System.out.println(sql);
 
             handler.executeSQLChange(sql);
+            handler.completeOperation();
         }
         catch(Exception e)
         {

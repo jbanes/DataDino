@@ -161,6 +161,7 @@ public class ColumnEditor extends JDialog
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         try
         {
+            SQLClientHandler handler = this.handler.getConnection();
             String SQL = "ALTER TABLE "+tableName+" ADD "+SQLNormalizer.columnName(name.getText(), handler);
             
             SQL += " " + type.getSelectedItem().toString();
@@ -187,6 +188,7 @@ public class ColumnEditor extends JDialog
             }*/
             
             dispose();
+            handler.completeOperation();
         }
         catch(Exception e)
         {
